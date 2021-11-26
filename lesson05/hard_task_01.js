@@ -1,14 +1,17 @@
 'use strict';
 
 {
-  const gcd = (a, b) => {
-    if (!b) {   
-      return a;
+  const firstNumber = prompt('Первое число');
+  const secondNumber = prompt('Второе число');
+
+  const greatestCommonDivisor = (firstNumber, secondNumber) => {
+    if (!secondNumber) {      
+      return firstNumber; 
     } else {
-      return gcd(b, a % b);
+      return greatestCommonDivisor(secondNumber, firstNumber % secondNumber);  
     }
   }
   
-  console.log(gcd(3, 10));
+  console.log(greatestCommonDivisor(firstNumber, secondNumber));
   
 }
