@@ -1,10 +1,10 @@
 'use strict';
 
 {
-  const maxOfNumbers = (...arg) => {
-    const maxNumber = Math.max(...arg);
-    return maxNumber;
+  const minOfNumbers = (...arg) => {
+    const minNumber = Math.min(...arg);
+    return minNumber;
   }
   
-  console.log(maxOfNumbers(10, -1, 0, 3, 123, 432));
+  console.log(minOfNumbers(10, -1, 0, 3, 123, 432));
 }
