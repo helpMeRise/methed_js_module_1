@@ -35,12 +35,7 @@
 
     let attempts = 0;
 
-    if ( start === 50 && end === 100 ) {
-      attempts = 15;
-    } else {
-      attempts = Math.round((end - start) * 0.3);
-    } 
-    
+    attempts = Math.round((end - start) * 0.3); 
 
     if (attempts < 0) {
       attempts = 1;
