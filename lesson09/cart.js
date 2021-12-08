@@ -1,6 +1,8 @@
+
+
 'use strict';
 
-const basket = {
+const cart = {
   items: [],
   totalPrice: 0,
   count: 0,
@@ -22,9 +24,9 @@ const basket = {
     } );
   },
   clear() {
-    this.items = [],
-    this.totalPrice = 0,
-    this.count = 0
+    this.items = [];
+    this.totalPrice = 0;
+    this.count = 0;
   },
   print() {
     console.log(JSON.stringify(this.items));
@@ -40,7 +42,7 @@ while (goods > 0) {
       itemcount = +prompt('Количество товара');
   goods--;
 
-  basket.add(itemName, itemPrice, itemcount);
+  cart.add(itemName, itemPrice, itemcount);
 }
 
-basket.print();
+cart.print();
