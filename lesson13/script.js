@@ -1,4 +1,3 @@
 'use strict';
-
-const startGame = window.RPS('ENG');
-startGame();
+const lang = prompt('Введи EN или ENG для английского иначе - русский: ');
+window.RPS(lang);
