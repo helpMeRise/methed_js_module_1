@@ -41,35 +41,38 @@
         game(language);
       }
 
-      const botFigure = getFigure(language);
-      let playerWins = 0;
-      let botWins = 0;
-      let result = '';
+      const gameResult = () => {
+        const botFigure = getFigure(language);
+        let playerWins = 0;
+        let botWins = 0;
+        let result = '';
 
-      if (botFigure === playerChoice) {
-        result = 'Drow';
-      } else if ((botFigure === 'rock' && playerChoice === 'paper') ||
-        (botFigure === 'scissors' && playerChoice === 'rock') ||
-        (botFigure === 'paper' && playerChoice === 'scissors')) {
-        result = 'Player wins';
-        playerWins++;
-      } else {
-        result = 'Computer wins';
-        botWins++;
-      }
+        if (botFigure === playerChoice) {
+          result = 'Drow';
+        } else if ((botFigure === 'rock' && playerChoice === 'paper') ||
+          (botFigure === 'scissors' && playerChoice === 'rock') ||
+          (botFigure === 'paper' && playerChoice === 'scissors')) {
+          result = 'Player wins';
+          playerWins++;
+        } else {
+          result = 'Computer wins';
+          botWins++;
+        }
 
-      alert(`Computer figure: ${botFigure}
-            Player figure: ${playerChoice}
-            Result: ${result}`);
-      const oneMore = confirm('Wanna play again? ');
-      if (oneMore) {
-        game(language);
-      } else {
-        alert(`
-        Computer scores: ${botWins}
-        Player scores: ${playerWins}`);
-        return;
-      }
+        alert(`Computer figure: ${botFigure}
+              Player figure: ${playerChoice}
+              Result: ${result}`);
+        const oneMore = confirm('Wanna play again? ');
+        if (oneMore) {
+          game(language);
+        } else {
+          alert(`
+          Computer scores: ${botWins}
+          Player scores: ${playerWins}`);
+          return;
+        }
+      };
+      gameResult();
     } else {
       let playerChoice = prompt('камень, ножницы, бумага?');
       if (playerChoice === null) {
@@ -89,38 +92,39 @@
         game(language);
       }
 
-      const botFigure = getFigure(language);
-      let playerWins = 0;
-      let botWins = 0;
-      let result = '';
+      const gameResult = () => {
+        const botFigure = getFigure(language);
+        let playerWins = 0;
+        let botWins = 0;
+        let result = '';
+        if (botFigure === playerChoice) {
+          result = 'Ничья';
+        } else if ((botFigure === 'камень' && playerChoice === 'бумага') ||
+          (botFigure === 'ножницы' && playerChoice === 'камень') ||
+          (botFigure === 'бумага' && playerChoice === 'ножницы')) {
+          result = 'Игрок победил';
+          playerWins++;
+        } else {
+          result = 'Компьютер победил';
+          botWins++;
+        }
 
-      if (botFigure === playerChoice) {
-        result = 'Ничья';
-      } else if ((botFigure === 'камень' && playerChoice === 'бумага') ||
-        (botFigure === 'ножницы' && playerChoice === 'камень') ||
-        (botFigure === 'бумага' && playerChoice === 'ножницы')) {
-        result = 'Игрок победил';
-        playerWins++;
-      } else {
-        result = 'Компьютер победил';
-        botWins++;
-      }
-
-      alert(`Выбор компьютера: ${botFigure}
-            Выбор игрока: ${playerChoice}
-            Результат: ${result}`);
-      const oneMore = confirm('Хотите сышрать еще? ');
-      if (oneMore) {
-        game(language);
-      } else {
-        alert(`
-        Очки компьютера: ${botWins}
-        Очки игрока: ${playerWins}`);
-        return;
-      }
+        alert(`Выбор компьютера: ${botFigure}
+              Выбор игрока: ${playerChoice}
+              Результат: ${result}`);
+        const oneMore = confirm('Хотите сыграть еще? ');
+        if (oneMore) {
+          game(language);
+        } else {
+          alert(`
+          Очки компьютера: ${botWins}
+          Очки игрока: ${playerWins}`);
+          return;
+        }
+      };
+      gameResult();
     }
   };
-
   window.RPS = game;
 })();
 
