@@ -19,12 +19,7 @@
   const game = () => {
     let playerChoice = prompt('камень, ножницы, бумага?');
     if (playerChoice === null) {
-      const playerCancel = confirm('Первым будет ходить бот');
-      if (playerCancel) {
-        return;
-      } else {
-        game();
-      }
+      return alert('Первым будет ходить бот');
     } else if (playerChoice[0] === 'к') {
       playerChoice = 'камень';
     } else if (playerChoice[0] === 'б') {
@@ -32,7 +27,7 @@
     } else if (playerChoice[0] === 'н') {
       playerChoice = 'ножницы';
     } else {
-      game();
+      return game();
     }
 
     const gameResult = () => {
@@ -84,7 +79,19 @@
 
   // основная функция игры. На вход получаем параметр победителя в предыдущей
   // игре, для определения очередности ходов
-  const turn = rpsWinner => {
+  const turn = (rpsWinner) => {
+    // функция запроса на новую игру
+    const newGame = () => {
+      const again = confirm('Сыграем еще разок? ');
+      if (again) {
+        playerBalls = 5;
+        botBalls = 5;
+        turn(window.RPS());
+      } else {
+        return;
+      }
+    };
+
     if (rpsWinner === 'player') {
       alert('Ход игрока');
       const playerBet = prompt('Сколько шариков загадываете? ');
@@ -97,6 +104,9 @@
       // наоборот. При нажатии на отмену игра заканчивается
       if (playerBet === null) {
         return alert('Пока пока');
+      } else if (isNaN(playerBet)) {
+        alert('Вы ввели не число');
+        return turn('player');
       } else if (playerChoice === botChoice) {
         playerBalls -= +playerBet;
         botBalls += +playerBet;
@@ -117,7 +127,7 @@
       } else if (playerBalls <= 0) {
         return alert('Игра окончена. Игрок проиграл все шарики');
       } else {
-        turn('bot');
+        return turn('bot');
       }
     // повторяем весь код игры, для хода бота
     } else {
@@ -141,19 +151,14 @@
                 player: ${playerBalls}`);
       }
       if (botBalls <= 0) {
-        return alert('Игра окончена. Бот проиграл все шарики');
+        alert('Игра окончена. Бот проиграл все шарики');
+        return newGame();
       } else if (playerBalls <= 0) {
-        return alert('Игра окончена. Игрок проиграл все шарики');
+        alert('Игра окончена. Игрок проиграл все шарики');
+        return newGame();
       } else {
-        turn('player');
+        return turn('player');
       }
-    }
-
-    const again = confirm('Сыграем еще разок? ');
-    if (again) {
-      turn(window.RPS());
-    } else {
-      return;
     }
   };
 
