@@ -19,7 +19,7 @@
   const game = () => {
     let playerChoice = prompt('камень, ножницы, бумага?');
     if (playerChoice === null) {
-      const playerCancel = confirm('Действительно хотите выйти??');
+      const playerCancel = confirm('Первым будет ходить бот');
       if (playerCancel) {
         return;
       } else {
@@ -98,14 +98,14 @@
       if (playerBet === null) {
         return alert('Пока пока');
       } else if (playerChoice === botChoice) {
-        playerBalls -= playerBet;
-        botBalls += playerBet;
+        playerBalls -= +playerBet;
+        botBalls += +playerBet;
         alert(`Бот выбрал ${botChoice}
                 bot: ${botBalls}
                 player: ${playerBalls}`);
       } else {
-        playerBalls += playerBet;
-        botBalls -= playerBet;
+        playerBalls += +playerBet;
+        botBalls -= +playerBet;
         alert(`Бот выбрал ${botChoice}
                 bot: ${botBalls}
                 player: ${playerBalls}`);
@@ -115,7 +115,7 @@
       if (botBalls <= 0) {
         return alert('Игра окончена. Бот проиграл все шарики');
       } else if (playerBalls <= 0) {
-        return alert('Игра окончена. Бот проиграл все шарики');
+        return alert('Игра окончена. Игрок проиграл все шарики');
       } else {
         turn('bot');
       }
@@ -143,10 +143,17 @@
       if (botBalls <= 0) {
         return alert('Игра окончена. Бот проиграл все шарики');
       } else if (playerBalls <= 0) {
-        return alert('Игра окончена. Бот проиграл все шарики');
+        return alert('Игра окончена. Игрок проиграл все шарики');
       } else {
         turn('player');
       }
+    }
+
+    const again = confirm('Сыграем еще разок? ');
+    if (again) {
+      turn(window.RPS());
+    } else {
+      return;
     }
   };
 
